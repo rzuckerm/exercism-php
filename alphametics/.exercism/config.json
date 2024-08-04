@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "MichaelBunker"
+  ],
+  "files": {
+    "solution": [
+      "Alphametics.php"
+    ],
+    "test": [
+      "AlphameticsTest.php"
+    ],
+    "example": [
+      ".meta/example.php"
+    ]
+  },
+  "blurb": "Write a function to solve alphametics puzzles."
+}

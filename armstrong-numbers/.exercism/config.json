@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "amscotti"
+  ],
+  "contributors": [
+    "arueckauer",
+    "neenjaw"
+  ],
+  "files": {
+    "solution": [
+      "ArmstrongNumbers.php"
+    ],
+    "test": [
+      "ArmstrongNumbersTest.php"
+    ],
+    "example": [
+      ".meta/example.php"
+    ]
+  },
+  "blurb": "Determine if a number is an Armstrong number",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Narcissistic_number"
+}

@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "Leprechaunz"
+  ],
+  "contributors": [
+    "arueckauer",
+    "kytrinyx",
+    "neenjaw"
+  ],
+  "files": {
+    "solution": [
+      "RunLengthEncoding.php"
+    ],
+    "test": [
+      "RunLengthEncodingTest.php"
+    ],
+    "example": [
+      ".meta/example.php"
+    ]
+  },
+  "blurb": "Implement run-length encoding and decoding.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Run-length_encoding"
+}
