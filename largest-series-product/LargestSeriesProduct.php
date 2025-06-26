@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 class Series
 {
-    public function __construct(private string $input) {}
+    public function __construct(private string $input)
+    {
+    }
 
     public function largestProduct(int $span): int
     {
