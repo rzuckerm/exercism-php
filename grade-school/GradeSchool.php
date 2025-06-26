@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-class School
+class GradeSchool
 {
     private array $students = [];
 
-    public function add(string $name, int $grade): void
+    public function add(string $name, int $grade): bool
     {
-        $this->students[$grade][] = $name;
-        sort($this->students[$grade]);
+        $should_add = !in_array($name, $this->roster());
+        if ($should_add) {
+            $this->students[$grade][] = $name;
+            sort($this->students[$grade]);
+        }
+
+        return $should_add;
     }
 
     public function grade(int $grade): array
@@ -17,9 +22,9 @@ class School
         return array_key_exists($grade, $this->students) ? $this->students[$grade] : [];
     }
 
-    public function studentsByGradeAlphabetical(): array
+    public function roster(): array
     {
         ksort($this->students);
-        return $this->students;
+        return array_merge(...$this->students);
     }
 }
