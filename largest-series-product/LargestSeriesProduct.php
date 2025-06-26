@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 class Series
 {
-    public function __construct(private string $input)
-    {
-    }
+    public function __construct(private string $input) {}
 
     public function largestProduct(int $span): int
     {
-        $cnt = strlen($this->input) - $span;
-        if (!preg_match("/^[0-9]+$/", $this->input) || $cnt < 0 || $span < 1) {
+        $len = strlen($this->input);
+        if (($len && !preg_match("/^[0-9]+$/", $this->input)) || $span < 0 || $span > $len) {
             throw new InvalidArgumentException();
         }
 
-        return max(array_map(fn(int $n): int => array_product(str_split(substr($this->input, $n, $span))), range(0, $cnt)));
+        return ($span) ? max(array_map(fn(int $n): int => array_product(str_split(substr($this->input, $n, $span))), range(0, $len - $span))) : 1;
     }
 }
