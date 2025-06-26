@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-function resultFor(array $lines): ?string
+function winner(array $lines): string
 {
+    $lines = array_map(fn($line) => str_replace(" ", "", $line), $lines);
     [$nr, $nc] = [count($lines), strlen($lines[0])];
     $ptsArr = ["O" => [], "X" => []];
     $endDims = ["O" => [$nr - 1, $nc - 1], "X" => [$nc - 1, $nr - 1]];
@@ -28,7 +29,7 @@ function resultFor(array $lines): ?string
         }
     }
 
-    return null;
+    return "";
 }
 
 function _isWinner($pts, $pt, $ends, &$path): bool
