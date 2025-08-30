@@ -42,3 +42,11 @@ If you want to dig deeper into linked lists, check out [this article][intro-link
 ### Created by
 
 - @MichaelBunker
+
+### Contributed to by
+
+- @A-O-Emmanuel
+
+### Based on
+
+Classic computer science topic

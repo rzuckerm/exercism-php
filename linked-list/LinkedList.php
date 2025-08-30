@@ -13,43 +13,62 @@ class LinkedList
 {
     private ?Node $head;
     private ?Node $tail;
+    private int $count;
 
     public function __construct()
     {
         $this->tail = new Node(null);
         $this->head = new Node(null, next: $this->tail);
         $this->tail->prev = $this->head;
+        $this->count = 0;
+    }
+
+    public function count()
+    {
+        return $this->count;
     }
 
     public function push(mixed $value): void
     {
-        $this->add($value, next: $this->tail, prev: $this->tail->prev);
+        $this->addNode($value, next: $this->tail, prev: $this->tail->prev);
     }
 
     public function pop(): mixed
     {
-        return $this->delete($this->tail->prev);
+        return $this->deleteNode($this->tail->prev);
     }
 
     public function unshift(mixed $value): void
     {
-        $this->add($value, next: $this->head->next, prev: $this->head);
+        $this->addNode($value, next: $this->head->next, prev: $this->head);
     }
 
     public function shift(): mixed
     {
-        return $this->delete($this->head->next);
+        return $this->deleteNode($this->head->next);
     }
 
-    private function add(mixed $value, Node $next, Node $prev): void
+    public function delete(mixed $value): void
+    {
+        for ($node = $this->head; $node != $this->tail; $node = $node->next) {
+            if ($value == $node->value) {
+                $this->deleteNode($node);
+                break;
+            }
+        }
+    }
+
+    private function addNode(mixed $value, Node $next, Node $prev): void
     {
         $next->prev = $prev->next = new Node($value, next: $next, prev: $prev);
+        $this->count++;
     }
 
-    private function delete(Node $node): mixed
+    private function deleteNode(Node $node): mixed
     {
         $node->prev->next = $node->next;
         $node->next->prev = $node->prev;
+        $this->count--;
         return $node->value;
     }
 }
