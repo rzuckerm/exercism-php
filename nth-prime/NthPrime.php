@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function prime(int $number): int|bool
+function prime(int $number): int
 {
     $p = 1;
     for ($i = 0; $i < $number; $i++) {
@@ -10,7 +10,7 @@ function prime(int $number): int|bool
         }
     }
 
-    return ($p >= 2) ? $p : false;
+    return ($p >= 2) ? $p : throw new InvalidArgumentException('Input must be a positive integer.');
 }
 
 function _isPrime(int $p): bool
