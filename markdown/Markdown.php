@@ -9,16 +9,16 @@ function parseMarkdown($markdown)
         "<h" . ($l = strlen($m[1])) . ">" . trim($m[2]) . "</h$l>", $markdown);
 
     // Bold
-    $html = preg_replace('/__(.*)__/', '<em>\1</em>', $html);
+    $html = preg_replace('/__(.*)__/', '<strong>\1</strong>', $html);
 
     // Italics
-    $html = preg_replace('/_(.*)_/', '<i>\1</i>', $html);
+    $html = preg_replace('/_(.*)_/', '<em>\1</em>', $html);
 
     // List items
     $html = preg_replace('/^\* (.*)/m', '<li>\1</li>', $html);
 
     // Nested paragraphs
-    $html = preg_replace('#^<li>(?!<i>|<em>)(.*)</li>#m', '<li><p>\1</p></li>', $html);
+    $html = preg_replace('#^<li>(?!<i>|<em>)(.*)</li>#m', '<li>\1</li>', $html);
 
     // Unordered lists
     $html = preg_replace('!(<li>.*</li>)!s', '<ul>\1</ul>', $html);
