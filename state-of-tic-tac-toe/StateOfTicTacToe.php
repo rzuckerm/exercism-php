@@ -18,14 +18,13 @@ class StateOfTicTacToe
         $pieces = str_split(implode($board));
         $counts = array_count_values($pieces);
         [$xs, $os] = [$counts["X"] ?? 0, $counts["O"] ?? 0];
+        [$xwins, $owins] = [$this->wins($pieces, "XXX"), $this->wins($pieces, "OOO")];
         return match (true) {
+            ($xs == $os && $xwins) || ($xs - $os == 1 && $owins) => throw new RuntimeException("Impossible board: game should have ended after the game was won"),
             $os > $xs => throw new RuntimeException("Wrong turn order: O started"),
             $xs - $os >= 2 => throw new RuntimeException("Wrong turn order: X went twice"),
-            default => match ([$this->wins($pieces, "XXX"), $this->wins($pieces, "OOO")]) {
-                    [false, false] => ($xs + $os < 9) ? State::Ongoing : State::Draw,
-                    [true, false], [false, true] => State::Win,
-                    [true, true] => throw new RuntimeException("Impossible board: game should have ended after the game was won"),
-                },
+            $xwins || $owins => State::Win,
+            default => ($xs + $os < 9) ? State::Ongoing : State::Draw
         };
     }
 
