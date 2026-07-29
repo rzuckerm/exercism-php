@@ -35,7 +35,7 @@ class SwiftScheduling
     private function convertQFormat(int $dueQuarter): DateTime
     {
         $dueMonth = 3 * $dueQuarter;
-        $yearAdd = ((int) $this->meetingStart->format("m") < $dueMonth) ? 0 : 1;
+        $yearAdd = ((int) $this->meetingStart->format("m") <= $dueMonth) ? 0 : 1;
         $date = clone $this->meetingStart;
         $date->setDate((int) $this->meetingStart->format("Y") + $yearAdd, $dueMonth, 1);
         return $date->modify("+1 month, last weekday")->setTime(8, 0);

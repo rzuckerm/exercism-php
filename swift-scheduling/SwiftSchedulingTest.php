@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\TestCase;
 
 class SwiftSchedulingTest extends TestCase
 {
@@ -231,6 +231,20 @@ class SwiftSchedulingTest extends TestCase
         $description     = "Q3";
         $meetingStart    = new DateTime("2022-10-06T11:00:00");
         $expected        = new DateTime("2023-09-29T08:00:00");
+        $swiftScheduling = new SwiftScheduling($meetingStart);
+
+        $this->assertEquals($expected, $swiftScheduling->deliveryDate($description));
+    }
+
+    /**
+     * uuid: 7c8f1616-be62-417e-bbd5-a60fa743eccc
+     */
+    #[TestDox('Q2 starting in the last month of the second quarter translates to the last workday of the second quarter of this year')]
+    public function testQTwoStartingInTheLastMonthOfTheSecondQuarterTranslatesToTheLastWorkdayOfTheSecondQuarterOfThisYear(): void
+    {
+        $description     = "Q2";
+        $meetingStart    = new DateTime("2019-06-15T09:50:00");
+        $expected        = new DateTime("2019-06-28T08:00:00");
         $swiftScheduling = new SwiftScheduling($meetingStart);
 
         $this->assertEquals($expected, $swiftScheduling->deliveryDate($description));
